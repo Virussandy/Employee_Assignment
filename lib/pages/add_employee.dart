@@ -157,7 +157,6 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
                           else{
                             setState(() {
                               toDateController.text='No Date';
-                              selectedFromDate = null;
                               toDateController.clear();
                             });
                           }
