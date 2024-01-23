@@ -60,6 +60,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     );
   }
 
+
   @override
   Widget _buildFromDateSection() {
     if (widget.isFromDate) {
@@ -152,9 +153,10 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
-          minSelectedDate: widget.isFromDate ? null : initialFromDate,
+          minSelectedDate: widget.isFromDate ? null : (initialFromDate!.month==selectedFromDate!.month)?initialFromDate:selectedToDate,
           onDayPressed: (DateTime date, List<EventInterface> events) {
             setState(() {
+              print(initialFromDate!.month>selectedFromDate!.month);
               if (widget.isFromDate) {
                 selectedFromDate = date;
               } else {
