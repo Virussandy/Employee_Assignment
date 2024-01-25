@@ -1,4 +1,3 @@
-
 class UiState {
   final bool hasData;
   final bool isLoading;

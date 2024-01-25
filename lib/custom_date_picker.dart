@@ -180,15 +180,15 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     final todayday = DateTime.now().day;
     final today = DateTime.now();
     if (selectedDate.day == todayday) {
-      return widget.isFromDate ? 0 : 1; // Today
+      return widget.isFromDate ? 0 : 1;
     } else if (selectedDate.difference(today).inDays == 0) {
-      return widget.isFromDate ? 1 : 2; // Next Day
+      return widget.isFromDate ? 1 : 2;
     } else if (selectedDate.difference(today).inDays == 1) {
-      return 2; // Next 2nd Day
+      return 2;
     } else if (selectedDate.difference(today).inDays >= 7) {
-      return 3; // After 1 week
+      return 3;
     } else {
-      return -1; // Not in the predefined dates
+      return -1;
     }
   }
 
@@ -283,7 +283,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     if (index == selectedDateIndex) {
       return Theme.of(context).primaryColor;
     } else if (index == 0 && selectedDateIndex == 0) {
-      return Theme.of(context).primaryColor; // Set the background color for "No date" button when selected
+      return Theme.of(context).primaryColor;
     } else {
       return Theme.of(context).cardColor;
     }
@@ -291,24 +291,20 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   Color _calculateButtonTextColor(int index) {
     return (index == selectedDateIndex || (index == 0 && selectedDateIndex == 0))
-        ? Colors.white // Set the text color for "No date" button when selected
+        ? Colors.white
         : Theme.of(context).primaryColor;
   }
 
   String _buildDynamicLabel(String label, int index) {
     if (widget.isFromDate) {
-      // Handle buttons for "from_date" calendar
       if (index == 1) {
-        return '$label ' +
-            DateFormat('EEEE').format(DateTime.now().add(Duration(days: 1)));
+        return '$label ${DateFormat('EEEE').format(DateTime.now().add(Duration(days: 1)))}';
       } else if (index == 2) {
-        return '$label ' +
-            DateFormat('EEEE').format(DateTime.now().add(Duration(days: 2)));
+        return '$label ${DateFormat('EEEE').format(DateTime.now().add(Duration(days: 2)))}';
       } else {
         return label;
       }
     } else {
-      // Handle buttons for "to_date" calendar
       if (index == 0) {
         return 'No date';
       } else if (index == 1) {
@@ -320,7 +316,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
   @override
   void dispose() {
-    initialFromDate = null; // Clear the reference when the widget is disposed
+    initialFromDate = null;
     super.dispose();
   }
 }

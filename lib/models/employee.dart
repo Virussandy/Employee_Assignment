@@ -1,6 +1,6 @@
-// Assuming Employee class has an 'id' field
+
 class Employee {
-  int? id; // Add this field if not already present
+  int? id;
   String name;
   String jobRole;
   String startDate;
@@ -14,9 +14,6 @@ class Employee {
     this.endDate,
   });
 
-  // Other methods and constructors...
-
-  // Convert Employee object to a map
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -26,8 +23,6 @@ class Employee {
       'endDate': endDate,
     };
   }
-
-  // Create an Employee object from a map
   factory Employee.fromMap(Map<String, dynamic> map) {
     return Employee(
       id: map['id'],

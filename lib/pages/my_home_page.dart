@@ -32,7 +32,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<EmployeeCubit, EmployeeState>(
       builder: (context, state) {
-        print(state.employees);
         return Scaffold(
           key: _scaffoldKey,
           appBar: AppBar(
@@ -65,8 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: SizedBox(
           width: 261.79.w,
           height: 244.38.h,
-          child: Image.asset(
-              'assets/images/img.png'),
+          child: Image.asset('assets/images/img.png'),
         ),
       );
     } else {
@@ -97,14 +95,15 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child:  Text(title,
-                      style:TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.sp,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
+                ),
               ],
             ),
           ),
@@ -136,20 +135,42 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: InkWell(
                   onTap: () => _navigateToEditEmployee(context, employee),
                   child: Container(
-                    decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor))),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: Theme.of(context).dividerColor))),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(employee.name ?? '',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16.sp,)),
-                          Text(employee.jobRole ?? '',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14.sp,)),
+                          Text(employee.name ?? '',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.sp,
+                              )),
+                          Text(employee.jobRole ?? '',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14.sp,
+                              )),
                           Row(
                             children: [
-                              if (employee.endDate != null && employee.endDate!.isNotEmpty)
-                                Text('${employee.startDate ?? ''} - ${employee.endDate}', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12.sp,)),
-                              if (employee.endDate == null || employee.endDate!.isEmpty)
-                                Text('From ${employee.startDate ?? ''}', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12.sp,)),
+                              if (employee.endDate != null &&
+                                  employee.endDate!.isNotEmpty)
+                                Text(
+                                    '${employee.startDate ?? ''} - ${employee.endDate}',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.sp,
+                                    )),
+                              if (employee.endDate == null ||
+                                  employee.endDate!.isEmpty)
+                                Text('From ${employee.startDate ?? ''}',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12.sp,
+                                    )),
                             ],
                           ),
                         ],

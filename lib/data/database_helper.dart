@@ -1,10 +1,8 @@
-
 import 'dart:async';
-
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-import '../models/employee.dart'; // Replace with your actual project structure
+import '../models/employee.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper._internal();
@@ -53,7 +51,6 @@ class DatabaseHelper {
     return await db.insert('employees', employee.toMap());
   }
 
-  // Add the updateEmployee method
   Future<int> updateEmployee(Employee employee) async {
     final Database db = await database;
     return await db.update(

@@ -92,90 +92,87 @@ class _AddEmployeePageState extends State<AddEmployeePage> {
               SizedBox(
                 height: 24.h,
               ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Flexible(
-                      child: TextFormField(
-                        onTap: () async {
-                           final pickedDate = (await showDialog<DateTime?>(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return CustomDatePicker(isFromDate: true,
-                                fromDate: selectedFromDate);
-                            },
-                          ));
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: TextFormField(
+                      onTap: () async {
+                         final pickedDate = (await showDialog<DateTime?>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomDatePicker(isFromDate: true,
+                              fromDate: selectedFromDate);
+                          },
+                        ));
 
-                          if (pickedDate != null) {
-                            setState(() {
-                              selectedFromDate = pickedDate;
-                              fromDateController.text =
-                                  DateFormat('dd MMM yyyy').format(pickedDate);
-                            });
-                          }
-                        },
-                        readOnly: true,
-                        controller: fromDateController,
-                        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
-                        decoration: InputDecoration(
-                          hintText: 'Today',
-                          hintStyle: const TextStyle(color: Colors.black),
-                          prefixIcon: SizedBox(
+                        if (pickedDate != null) {
+                          setState(() {
+                            selectedFromDate = pickedDate;
+                            fromDateController.text =
+                                DateFormat('dd MMM yyyy').format(pickedDate);
+                          });
+                        }
+                      },
+                      readOnly: true,
+                      controller: fromDateController,
+                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
+                      decoration: InputDecoration(
+                        hintText: 'Today',
+                        hintStyle: const TextStyle(color: Colors.black),
+                        prefixIcon: SizedBox(
+                          width: 15.w,
+                          height: 14.62.h,
+                          child: Icon(Icons.date_range_rounded,
+                              color: Theme.of(context).primaryColor),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                      child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+                    child: Icon(Icons.arrow_right_alt_rounded,
+                        color: Theme.of(context).primaryColor),
+                  )),
+                  Flexible(
+                    child: TextFormField(
+                      onTap: () async {
+                        final pickedDate = (await showDialog<DateTime?>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomDatePicker(isFromDate: false,
+                              fromDate: selectedFromDate,);
+                          },
+                        ));
+                        if (pickedDate != null) {
+                          setState(() {
+                            toDateController.text =
+                                DateFormat('dd MMM yyyy').format(pickedDate);
+                          });
+                        }
+                        else{
+                          setState(() {
+                            toDateController.text='No Date';
+                            toDateController.clear();
+                          });
+                        }
+                      },
+                      readOnly: true,
+                      controller: toDateController,
+                      style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.w400),
+                      decoration: InputDecoration(
+                        hintText: 'No date',
+                        prefixIcon: SizedBox(
                             width: 15.w,
                             height: 14.62.h,
                             child: Icon(Icons.date_range_rounded,
-                                color: Theme.of(context).primaryColor),
-                          ),
-                        ),
+                                color: Theme.of(context).primaryColor)),
                       ),
                     ),
-                    SizedBox(
-                        child: Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
-                      child: Icon(Icons.arrow_right_alt_rounded,
-                          color: Theme.of(context).primaryColor),
-                    )),
-                    Flexible(
-                      child: TextFormField(
-                        onTap: () async {
-                          final pickedDate = (await showDialog<DateTime?>(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return CustomDatePicker(isFromDate: false,
-                                fromDate: selectedFromDate,);
-                            },
-                          ));
-                          if (pickedDate != null) {
-                            print(pickedDate);
-                            setState(() {
-                              toDateController.text =
-                                  DateFormat('dd MMM yyyy').format(pickedDate);
-                            });
-                          }
-                          else{
-                            setState(() {
-                              toDateController.text='No Date';
-                              toDateController.clear();
-                            });
-                          }
-                        },
-                        readOnly: true,
-                        controller: toDateController,
-                        style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.w400),
-                        decoration: InputDecoration(
-                          hintText: 'No date',
-                          prefixIcon: SizedBox(
-                              width: 15.w,
-                              height: 14.62.h,
-                              child: Icon(Icons.date_range_rounded,
-                                  color: Theme.of(context).primaryColor)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               const Spacer(),
               Divider(color: Theme.of(context).dividerColor,),
